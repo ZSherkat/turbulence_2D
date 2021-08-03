@@ -1,6 +1,6 @@
 # Turbulence_2D
 
-Data can be loaded using the xarray package as
+Data can be loaded using the xarray package,
 
 Load entire xarray dataset for a given snapshot
 import xarray

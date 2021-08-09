@@ -322,7 +322,7 @@ def custom_loss(y_true, y_pred):
 
 
 ######################################################
-#Define Model1 and Model2
+#Define Model
 ######################################################
 
 
@@ -491,7 +491,7 @@ H, preds = build_general(1024, 1024, 4)
 
 
 ###############################################################
-# plot the total loss, Unet loss, and PS loss
+# plot the loss
 ##################################################
 
 
@@ -506,7 +506,7 @@ plt.close()
 
 
 ###############################################################
-# plot the accuracies
+# plot the accuracy
 ##################################################
 
 plt.plot(H.history['val_accuracy'], label='validation')

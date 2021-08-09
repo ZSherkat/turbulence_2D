@@ -1,11 +1,6 @@
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Jun  9 09:36:24 2021
-
-@author: elham
-"""
 
 import os
 import xarray as xr
@@ -16,7 +11,6 @@ import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 import tensorflow as tf
-#from tensorflow.python.ops import control_flow_ops
 import datetime
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -218,16 +212,7 @@ def penalized_loss(az_mask):
         Loss_R_log = w_diff*tf.reduce_mean(tf.abs(tf.subtract(y_true_R, y_pred_R)))+w_loss_PS*tf.reduce_mean(tf.abs(diff_R))
         Loss_G_log = w_diff*tf.reduce_mean(tf.abs(tf.subtract(y_true_G, y_pred_G)))+w_loss_PS*tf.reduce_mean(tf.abs(diff_G))
         Loss_B_log = w_diff*tf.reduce_mean(tf.abs(tf.subtract(y_true_B, y_pred_B)))+w_loss_PS*tf.reduce_mean(tf.abs(diff_B))
-
-        #Loss_R = tf.reduce_mean(tf.abs(tf.math.log(tf.abs(diff_R))))
-        #Loss_G = tf.reduce_mean(tf.abs(tf.math.log(tf.abs(diff_G))))
-        #Loss_B = tf.reduce_mean(tf.abs(tf.math.log(tf.abs(diff_B))))
-
-
-        #Loss_R = tf.reduce_mean(tf.square(tf.subtract(y_true_R, y_pred_R)))+tf.reduce_mean(tf.square(diff_R))
-        #Loss_G = tf.reduce_mean(tf.square(tf.subtract(y_true_G, y_pred_G)))+tf.reduce_mean(tf.square(diff_G))
-        #Loss_B = tf.reduce_mean(tf.square(tf.subtract(y_true_B, y_pred_B)))+tf.reduce_mean(tf.square(diff_B))
-
+        
         Loss_R = tf.where((PS_true_R/N_filter**4)<5*10**(-11), Loss_R_log, tf.reduce_mean(tf.abs(tf.subtract(y_true_R, y_pred_R))))
         Loss_G = tf.where((PS_true_G/N_filter**4)<5*10**(-11), Loss_G_log, tf.reduce_mean(tf.abs(tf.subtract(y_true_G, y_pred_G))))
         Loss_B = tf.where((PS_true_B/N_filter**4)<10**(-10), Loss_B_log, tf.reduce_mean(tf.abs(tf.subtract(y_true_B, y_pred_B))))  
@@ -239,7 +224,7 @@ def penalized_loss(az_mask):
     return costum_loss
      
 ######################################################
-#Define Model1 and Model2
+#Define Model
 ######################################################
 
 
@@ -408,7 +393,7 @@ H, preds = build_general(1024, 1024, 4)
 
 
 ###############################################################
-# plot the total loss, Unet loss, and PS loss
+# plot the loss
 ##################################################
 
 
@@ -513,6 +498,6 @@ for i in [0,1,2]:
     plt.legend()
 
     l += 1
-plt.savefig('power_spectrum_Ny_25000.png',bbox_inches='tight')
+plt.savefig('power_spectrum_Ny.png',bbox_inches='tight')
 
 

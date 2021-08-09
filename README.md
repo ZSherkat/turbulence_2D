@@ -1,8 +1,7 @@
-# Turbulence_2D
+## Turbulence_2D
 
-Data can be loaded using the xarray package,
+# Data
+Data are generatated by using dedalus package and can be loaded using the xarray package. Time-evolving simulation is considered on a 1024*1024 uniform grid and collected snapshots separated in time. 
 
-Load entire xarray dataset for a given snapshot\
-import xarray\
-dataset = xarray.open_dataset('snapshots_s1.nc')
+
 
